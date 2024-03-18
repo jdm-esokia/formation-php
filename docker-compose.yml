@@ -1,0 +1,83 @@
+version: "3"
+
+services:
+  webserver:
+    build: 
+      context: .
+      dockerfile: .docker/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    container_name: '${PROJECT_NAME}-webserver'
+    restart: 'always'
+    ports:
+      - "${DEV_UNSECURE_HOST_PORT}:80"
+      - "${DEV_SECURE_HOST_PORT}:443"
+    links:
+      - mysql
+    volumes: 
+      - .:/var/www/html
+      - ${PHP_INI-.docker/config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${VHOSTS_DIR-.docker/config/vhosts}:/etc/apache2/sites-enabled
+      - ${LOG_DIR-.docker/logs/apache2}:/var/log/apache2
+    environment:
+      DB_DATABASE: "${DB_NAME}"
+      DB_USER: "${DB_USERNAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+  mysql:
+    image: '${DB_SERVER}'
+    container_name: '${PROJECT_NAME}-database'
+    restart: 'always'
+    ports:
+      - "${HOST_MACHINE_MYSQL_PORT}:3306"
+    volumes: 
+      - ${MYSQL_DATA_DIR-.docker/data/mysql}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR-.docker/logs/mysql}:/var/log/mysql
+      - ${MYSQL_CONF_DIR-.docker/config/mysql}:/etc/mysql/mysql.conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: '${PROJECT_NAME}-phpmyadmin'
+    restart: 'always'
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      #PMA_USER: root
+      #PMA_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - '${HOST_MACHINE_PHPMYADMIN_PORT}:80'
+# redis:
+#   container_name: 'sc-redis'
+#   image: redis:latest
+#   ports:
+#     - "${HOST_MACHINE_REDIS_PORT}:6379"
+
+#varnish:
+#    image: varnish
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.50'
+#          memory: '512M'
+#    volumes:
+#      - ./default.vcl:/etc/varnish/default.vcl:rw
+#    tmpfs: /var/lib/varnish:exec
+#    restart: 'always'
+#    ports:
+#      - 80:8080
+
+  # mailcatcher:
+  #   image: schickling/mailcatcher
+  #   container_name: '${PROJECT_NAME}-mailcatcher'
+  #   restart: 'always'
+  #   ports:
+  #     - "1025:1025"
+  #     - "1080:1080"
