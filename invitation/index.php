@@ -4,7 +4,7 @@
     <title>Birthday Invitation</title>
 </head>
 <body>
-    <h1>You are invited TO MY BIRTHDAY!</h1>
+    <h1>Birthday Invitation</h1>
 
     <form action="" method="GET">
         <input type="input" name="name" placeholder="Name">
@@ -13,7 +13,8 @@
         <input type="submit" value="Please Register Me!">
     </form>
     <style>
-        input { display: block; width: 200px; padding: 10px; margin: 10px}
+        * { font-family: Verdana, Geneva, Tahoma, sans-serif;}
+        input { display: block; width: 200px; padding: 10px; margin: 10px; border: 1px solid #ccc}
         form { margin: auto;}
     </style>
 
