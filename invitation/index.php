@@ -19,13 +19,29 @@
 
     <?php 
         if($_REQUEST['name']){
-            echo "<h2>Thank you for registering, " . $_REQUEST['name'] . "!</h2>";
 
             //Collect all variables posted by user
             $name = $_REQUEST['name'];
             $guests_count = $_REQUEST['guests_count'];
             $phone_number = $_REQUEST['phone_number'];
 
+            insertIntoDatabase($name, $guests_count, $phone_number);
+
+        }
+
+        function insertIntoDatabase($name, $guests_count, $phone_number){
+            include '../mysql_connection.php';
+            $sql = "INSERT INTO birthday_invitations (name, guests_count, phone_number) VALUES ('$name', '$guests_count', '$phone_number')";
+
+            if ($conn->query($sql) === TRUE) {
+                //get last entry id
+                $last_id = $conn->insert_id;
+
+                echo "<h2>Thank you for registering, " . $_REQUEST['name'] . "!</h2>";
+                echo "<h2>Your Table Number is </h2> <h1>#$last_id<h1>";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     ?>
 </body>
