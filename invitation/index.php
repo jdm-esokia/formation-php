@@ -12,6 +12,11 @@
         <input type="input" name="phone_number" placeholder="Phone Number">
         <input type="submit" value="Please Register Me!">
     </form>
+    <style>
+        input { display: block; width: 200px; padding: 10px; margin: 10px}
+        form { margin: auto;}
+    </style>
+
 
 </body>
 </html>
