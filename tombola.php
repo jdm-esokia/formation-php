@@ -6,7 +6,7 @@
     <title>Tombola!</title>
 </head>
 <body>
-    <h1>Please input your Tombola Ticket Number!</h1>
+    <h1>Please enter your Tombola Ticket Number!</h1>
     <form action="" method="GET">
         <input type="text" name="ticket_number" placeholder="000">
         <button type="submit">Verify My Ticket</button>
