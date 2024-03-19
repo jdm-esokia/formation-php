@@ -17,6 +17,10 @@
         form { margin: auto;}
     </style>
 
-
+    <?php 
+        if($_REQUEST['name']){
+            echo "<h2>Thank you for registering, " . $_REQUEST['name'] . "!</h2>";
+        }
+    ?>
 </body>
 </html>
