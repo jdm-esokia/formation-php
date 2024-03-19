@@ -20,6 +20,12 @@
     <?php 
         if($_REQUEST['name']){
             echo "<h2>Thank you for registering, " . $_REQUEST['name'] . "!</h2>";
+
+            //Collect all variables posted by user
+            $name = $_REQUEST['name'];
+            $guests_count = $_REQUEST['guests_count'];
+            $phone_number = $_REQUEST['phone_number'];
+
         }
     ?>
 </body>
