@@ -8,7 +8,7 @@
 <body>
     <?php 
     //display all invitations
-    include '../mysql_connection.php';
+    include '../mysql_connection/mysql_connection.php';
     $sql = "SELECT * FROM birthday_invitations";
     $result = $conn->query($sql);
 
