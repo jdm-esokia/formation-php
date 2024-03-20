@@ -6,7 +6,7 @@
 <body>
     <h1>Birthday Invitation</h1>
 
-    <form action="" method="GET">
+    <form action="" method="POST">
         <input type="input" name="name" placeholder="Name">
         <input type="input" name="guests_count" placeholder="Guest Count">
         <input type="input" name="phone_number" placeholder="Phone Number">
