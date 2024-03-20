@@ -31,7 +31,7 @@
         }
 
         function insertIntoDatabase($name, $guests_count, $phone_number){
-            include '../mysql_connection/mysql_connection.php';
+            include '../mysql_connection/index.php';
             $sql = "INSERT INTO birthday_invitations (name, guests_count, phone_number) VALUES ('$name', '$guests_count', '$phone_number')";
 
             if ($conn->query($sql) === TRUE) {
