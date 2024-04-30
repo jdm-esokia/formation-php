@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest List</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            margin: 0 auto;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f3f3f3;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e9e9e9;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     <?php 
@@ -33,6 +70,7 @@
             padding: 15px;
             text-align: left;
         }
+
     </style>
 </body>
 </html>
